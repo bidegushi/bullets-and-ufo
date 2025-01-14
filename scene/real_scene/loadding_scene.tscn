@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cds6vy1bigimi"]
+
+[ext_resource type="Script" path="res://scripts/real_scene/loadding_scene.gd" id="1_ml435"]
+[ext_resource type="FontFile" uid="uid://jcbtauc4b57x" path="res://resource/font/fusion-pixel-10px-monospaced-zh_hans.ttf" id="2_f76bc"]
+
+[node name="LoaddingScene" type="Control" node_paths=PackedStringArray("loadding_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ml435")
+loadding_label = NodePath("loadding")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0106466, 0.00620667, 0.0719643, 1)
+
+[node name="loadding" type="Label" parent="."]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 280.0
+offset_right = 954.0
+offset_bottom = 368.0
+theme_override_fonts/font = ExtResource("2_f76bc")
+theme_override_font_sizes/font_size = 81
+text = "加载中 loadding "

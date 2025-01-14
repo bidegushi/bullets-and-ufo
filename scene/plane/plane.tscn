@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx084rbiqoq4y"]
+
+[ext_resource type="Script" path="res://scripts/plane/plane.gd" id="1_0knvw"]
+[ext_resource type="Texture2D" uid="uid://0cydcf7hy6ca" path="res://resource/img/plane/plane.png" id="1_3x4vb"]
+[ext_resource type="PackedScene" uid="uid://lfo6x4avsxdv" path="res://scene/plane/bullet/bullet.tscn" id="2_8oyvx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2toe"]
+atlas = ExtResource("1_3x4vb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vcy84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2toe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Plane" type="CharacterBody2D" node_paths=PackedStringArray("fire_Timer")]
+script = ExtResource("1_0knvw")
+bullet_scene = ExtResource("2_8oyvx")
+fire_Timer = NodePath("fire_Timer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vcy84")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, 4, -8, 16, 8, 16, 3, 4, 3, -16, -3, -16)
+
+[node name="fire_Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="fire_Timer" to="." method="_on_fire_timer_timeout"]

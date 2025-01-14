@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bktyfpoxrsfub"]
+
+[ext_resource type="Script" path="res://scripts/enemy/skeleton.gd" id="1_pc5gx"]
+[ext_resource type="PackedScene" uid="uid://dygrvmgmfftt3" path="res://scene/explosion.tscn" id="2_kp1uh"]
+[ext_resource type="Texture2D" uid="uid://ge05yo1l3yy5" path="res://resource/img/enemy/skeleton.png" id="2_oyww0"]
+[ext_resource type="PackedScene" uid="uid://cxbh7iek00euk" path="res://scene/enemy/bullet/rock_bullet.tscn" id="3_v8xq3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f40np"]
+size = Vector2(28, 32)
+
+[node name="Skeleton" type="Area2D" node_paths=PackedStringArray("sprite", "fire_timer")]
+script = ExtResource("1_pc5gx")
+sprite = NodePath("Sprite2D")
+explosion_scene = ExtResource("2_kp1uh")
+bullet_scene = ExtResource("3_v8xq3")
+fire_timer = NodePath("fire_Timer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_oyww0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f40np")
+
+[node name="fire_Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="fire_Timer" to="." method="_on_fire_timer_timeout"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cipnmwcop6b2c"]
+
+[ext_resource type="Script" path="res://scripts/real_scene/strat_page.gd" id="1_fsrn5"]
+[ext_resource type="Texture2D" uid="uid://56ax4x0dpkio" path="res://resource/img/background/bg.png" id="3_lukrb"]
+[ext_resource type="FontFile" uid="uid://jcbtauc4b57x" path="res://resource/font/fusion-pixel-10px-monospaced-zh_hans.ttf" id="4_gli1b"]
+[ext_resource type="Texture2D" uid="uid://qkukad446v6o" path="res://resource/img/button/button_empty.png" id="5_2wo5g"]
+
+[node name="StratPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsrn5")
+
+[node name="backgroung" type="Sprite2D" parent="."]
+position = Vector2(576.5, 382)
+scale = Vector2(0.823319, 0.70872)
+texture = ExtResource("3_lukrb")
+
+[node name="godot重制" type="Label" parent="backgroung"]
+offset_left = 145.144
+offset_top = -290.665
+offset_right = 645.144
+offset_bottom = -178.665
+theme_override_fonts/font = ExtResource("4_gli1b")
+theme_override_font_sizes/font_size = 111
+text = "godot重制"
+
+[node name="start_to_play_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 356.0
+offset_right = 780.0
+offset_bottom = 469.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_gli1b")
+theme_override_font_sizes/font_size = 56
+text = "开始玩"
+icon = ExtResource("5_2wo5g")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="start_to_play_Button" to="." method="_on_start_to_play_button_pressed"]
