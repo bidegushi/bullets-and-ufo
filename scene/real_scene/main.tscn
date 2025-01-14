@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bs5ux37sqkbym"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_vb8tc"]
+[ext_resource type="Script" path="res://scripts/real_scene/main.gd" id="1_vb8tc"]
 [ext_resource type="PackedScene" uid="uid://fx1uuyifd66u" path="res://scene/enemy/ufo.tscn" id="2_8nj7n"]
 [ext_resource type="PackedScene" uid="uid://bktyfpoxrsfub" path="res://scene/enemy/skeleton.tscn" id="3_ylg5t"]
 [ext_resource type="Texture2D" uid="uid://cp6fsddluqi3c" path="res://resource/img/background/game.png" id="4_dg2gf"]
