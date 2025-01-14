@@ -12,7 +12,7 @@ var is_game_over : bool = false #游戏是否结束
 
 var plane_node 
 #var plane_scene=load("res://scene/plane/plane.tscn")
-var plane_scene=load("res://scene/plane/vip_plane.tscn")
+var plane_scene=Global.plane_scene
 
 var score : int = 0 #游戏得分
 

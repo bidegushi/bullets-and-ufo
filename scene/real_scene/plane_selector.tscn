@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxccdmdwhttp4"]
+
+[ext_resource type="Script" path="res://scripts/real_scene/plane_selector.gd" id="1_twqoq"]
+[ext_resource type="Texture2D" uid="uid://bmmdus2s8c2ry" path="res://resource/img/background/bg2.png" id="2_7dgln"]
+[ext_resource type="Texture2D" uid="uid://0cydcf7hy6ca" path="res://resource/img/plane/plane.png" id="3_x8u4e"]
+[ext_resource type="FontFile" uid="uid://jcbtauc4b57x" path="res://resource/font/fusion-pixel-10px-monospaced-zh_hans.ttf" id="4_coi7f"]
+[ext_resource type="Texture2D" uid="uid://qkukad446v6o" path="res://resource/img/button/button_empty.png" id="5_ggjoh"]
+[ext_resource type="Texture2D" uid="uid://d4auxiib2ageq" path="res://resource/img/plane/plane_vip.png" id="6_5kmxt"]
+
+[node name="PlaneSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_twqoq")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(577.958, 488)
+scale = Vector2(2.54167, 2.54167)
+texture = ExtResource("2_7dgln")
+
+[node name="normal" type="Sprite2D" parent="background"]
+position = Vector2(-165.23, -151.475)
+texture = ExtResource("3_x8u4e")
+
+[node name="normal_Button" type="Button" parent="background/normal"]
+offset_left = -49.5738
+offset_top = 26.7541
+offset_right = 50.4262
+offset_bottom = 61.7541
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_coi7f")
+text = "普通飞机"
+icon = ExtResource("5_ggjoh")
+icon_alignment = 1
+expand_icon = true
+
+[node name="vip" type="Sprite2D" parent="background"]
+position = Vector2(-40.1147, -151.869)
+scale = Vector2(1.0082, 1.0082)
+texture = ExtResource("6_5kmxt")
+
+[node name="vip_Button" type="Button" parent="background/vip"]
+offset_left = -49.5738
+offset_top = 26.7541
+offset_right = 50.4262
+offset_bottom = 61.7541
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_coi7f")
+text = "黄金飞机"
+icon = ExtResource("5_ggjoh")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="background/normal/normal_Button" to="." method="_on_normal_button_pressed"]
+[connection signal="pressed" from="background/vip/vip_Button" to="." method="_on_vip_button_pressed"]

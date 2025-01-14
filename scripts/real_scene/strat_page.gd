@@ -16,4 +16,4 @@ func _process(delta: float) -> void:
 
 
 func _on_start_to_play_button_pressed() -> void:
-	SceneManager.change_scene("main")
+	SceneManager.change_scene("plane_selector")
