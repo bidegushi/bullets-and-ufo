@@ -58,7 +58,9 @@ func game_over() -> void :
 		$CanvasLayer/score_label/game_over/final_score.text="最终分数: "+str(score) #显示最终分数
 		$CanvasLayer/score_label/game_over.visible=true #显示游戏结束的UI
 		
-		
+		#控制敌人生成的计时器停止计时
+		ufo_generate_timer.stop()
+		skeleton_generate_timer.stop()
 
 
 
