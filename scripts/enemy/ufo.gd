@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	
 	#超出可见范围即销毁
 	
-	if position.y>200:
+	if position.y>Global.down_boundary:
 		queue_free()
 
 

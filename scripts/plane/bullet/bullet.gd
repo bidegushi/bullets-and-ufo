@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	#创建后一直向上移动 并且直接改变position 不考虑碰撞
 	position.y += -bullet_speed * delta
 	
-	
+
 	#自动销毁已经在屏幕外的子弹
-	if position.y<-181:
+	if position.y<Global.up_boundary:
 		queue_free()

@@ -12,12 +12,12 @@ func _ready() -> void:
 	direction=plane_node.position-position
 	direction=direction.normalized() #获取飞机所在位置 从而计算得方向
 	
-	await get_tree().create_timer(8).timeout
-	queue_free()
+
 
 func _physics_process(delta: float) -> void:
 	position+=direction*rock_bullet_speed*delta
-
+	if position.y>Global.down_boundary:
+		queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
