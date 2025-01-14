@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Global="*res://scripts/auto_import/Global.gd"
 SceneManager="*res://scripts/auto_import/scene_manager.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
