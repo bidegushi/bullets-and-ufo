@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs5ux37sqkbym"]
+[gd_scene load_steps=8 format=3 uid="uid://bs5ux37sqkbym"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vb8tc"]
 [ext_resource type="PackedScene" uid="uid://fx1uuyifd66u" path="res://scene/enemy/ufo.tscn" id="2_8nj7n"]
 [ext_resource type="PackedScene" uid="uid://bktyfpoxrsfub" path="res://scene/enemy/skeleton.tscn" id="3_ylg5t"]
 [ext_resource type="Texture2D" uid="uid://cp6fsddluqi3c" path="res://resource/img/background/game.png" id="4_dg2gf"]
 [ext_resource type="FontFile" uid="uid://jcbtauc4b57x" path="res://resource/font/fusion-pixel-10px-monospaced-zh_hans.ttf" id="6_p2vtd"]
-[ext_resource type="PackedScene" uid="uid://cx084rbiqoq4y" path="res://scene/plane/plane.tscn" id="7_khak3"]
 [ext_resource type="Texture2D" uid="uid://qkukad446v6o" path="res://resource/img/button/button_empty.png" id="7_owwim"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mrmqj"]
@@ -116,9 +115,6 @@ theme_override_font_sizes/font_size = 28
 text = "重试"
 icon = ExtResource("7_owwim")
 icon_alignment = 1
-
-[node name="Plane" parent="." instance=ExtResource("7_khak3")]
-position = Vector2(0, 122)
 
 [connection signal="timeout" from="ufo_generate_Timer" to="." method="_on_ufo_generate_timer_timeout"]
 [connection signal="timeout" from="skeleton_generate_Timer" to="." method="_on_skeleton_generate_timer_timeout"]

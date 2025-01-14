@@ -11,6 +11,7 @@ extends Node2D
 var is_game_over : bool = false #游戏是否结束
 
 var plane_node 
+var plane_scene=load("res://scene/plane/plane.tscn")
 
 var score : int = 0 #游戏得分
 
@@ -26,8 +27,15 @@ var skeleton_cyc : float = 5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer/score_label/game_over.visible=false #初始状态下 游戏结束相关的不可见
+	#plane_node=$Plane
 	
-	plane_node=$Plane
+	
+	plane_node=plane_scene.instantiate()
+	plane_node.position=Vector2(0,121)
+	get_tree().current_scene.add_child(plane_node)
+	
+	get_tree()
+	
 	ufo_generate_timer.wait_time=ufo_cyc #ufo出现周期
 	skeleton_generate_timer.wait_time=skeleton_cyc #skeleton出现周期
 
