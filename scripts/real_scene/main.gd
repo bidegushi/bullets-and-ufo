@@ -1,10 +1,15 @@
 extends Node2D
 
+#计时器
 @export var ufo_generate_timer : Timer
 @export var skeleton_generate_timer : Timer
 
+#敌人场景
 @export var ufo_scene : PackedScene
 @export var skeleton_scene : PackedScene
+
+#计分板场景
+@export var scoreboard : PackedScene
 
 #@export var back_scene : PackedScene #点击返回按钮回到的页面
 
@@ -25,6 +30,13 @@ var skeleton_score : int = 3
 var ufo_cyc : float = 2
 var skeleton_cyc : float = 5
 
+#当前模式
+var mode : int = 0
+
+#本局花费时间 单位秒 
+#通过 _on_cost_time_timer_timeout() 实现计时
+var cost_time : int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer/score_label/game_over.visible=false #初始状态下 游戏结束相关的不可见
@@ -35,7 +47,7 @@ func _ready() -> void:
 	plane_node.position=Vector2(0,121)
 	get_tree().current_scene.add_child(plane_node)
 	
-	get_tree()
+
 	
 	ufo_generate_timer.wait_time=ufo_cyc #ufo出现周期
 	skeleton_generate_timer.wait_time=skeleton_cyc #skeleton出现周期
@@ -64,12 +76,16 @@ func _process(delta: float) -> void:
 var game_over_check:bool=false #是否已经执行游戏结束程序
 func game_over() -> void :
 	if not game_over_check:
-		$CanvasLayer/score_label/game_over/final_score.text="最终分数: "+str(score) #显示最终分数
-		$CanvasLayer/score_label/game_over.visible=true #显示游戏结束的UI
-		
+		game_over_check=true
+		#$CanvasLayer/score_label/game_over/final_score.text="最终分数: "+str(score) #显示最终分数
+		#$CanvasLayer/score_label/game_over.visible=true #显示游戏结束的UI
+		#$CanvasLayer/retry_and_back_button.visible=true
 		#控制敌人生成的计时器停止计时
 		ufo_generate_timer.stop()
 		skeleton_generate_timer.stop()
+		
+		var scoreboard_node=scoreboard.instantiate()
+		$CanvasLayer.add_child(scoreboard_node)
 
 
 
@@ -85,9 +101,10 @@ func _on_skeleton_generate_timer_timeout() -> void:
 	skeleton_node.position=Vector2(randf_range(-230,230),randf_range(-80,-144))
 	get_tree().current_scene.add_child(skeleton_node)
 
-func _on_retry_button_pressed() -> void:
-	get_tree().reload_current_scene()
 
 
-func _on_back_button_pressed() -> void:
-	SceneManager.change_scene("start_page")
+
+func _on_cost_time_timer_timeout() -> void:
+	#这个计时器计时周期为1秒 结束后自动重启
+	#用于实现正计时
+	cost_time+=1

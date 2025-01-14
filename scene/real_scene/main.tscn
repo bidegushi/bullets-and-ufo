@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs5ux37sqkbym"]
+[gd_scene load_steps=9 format=3 uid="uid://bs5ux37sqkbym"]
 
 [ext_resource type="Script" path="res://scripts/real_scene/main.gd" id="1_vb8tc"]
 [ext_resource type="PackedScene" uid="uid://fx1uuyifd66u" path="res://scene/enemy/ufo.tscn" id="2_8nj7n"]
 [ext_resource type="PackedScene" uid="uid://bktyfpoxrsfub" path="res://scene/enemy/skeleton.tscn" id="3_ylg5t"]
+[ext_resource type="PackedScene" uid="uid://bx1nqexhx0mme" path="res://scene/ui_component/scoreboard.tscn" id="4_c33cq"]
 [ext_resource type="Texture2D" uid="uid://cp6fsddluqi3c" path="res://resource/img/background/game.png" id="4_dg2gf"]
 [ext_resource type="FontFile" uid="uid://jcbtauc4b57x" path="res://resource/font/fusion-pixel-10px-monospaced-zh_hans.ttf" id="6_p2vtd"]
 [ext_resource type="Texture2D" uid="uid://qkukad446v6o" path="res://resource/img/button/button_empty.png" id="7_owwim"]
@@ -15,6 +16,7 @@ ufo_generate_timer = NodePath("ufo_generate_Timer")
 skeleton_generate_timer = NodePath("skeleton_generate_Timer")
 ufo_scene = ExtResource("2_8nj7n")
 skeleton_scene = ExtResource("3_ylg5t")
+scoreboard = ExtResource("4_c33cq")
 
 [node name="background_img" type="Sprite2D" parent="."]
 texture = ExtResource("4_dg2gf")
@@ -59,6 +61,7 @@ text = "分数: 0"
 metadata/_edit_lock_ = true
 
 [node name="game_over" type="Label" parent="CanvasLayer/score_label"]
+visible = false
 layout_mode = 0
 offset_left = 240.0
 offset_top = 242.0
@@ -69,6 +72,7 @@ theme_override_font_sizes/font_size = 145
 text = "Game Over!"
 
 [node name="final_score" type="Label" parent="CanvasLayer/score_label/game_over"]
+visible = false
 layout_mode = 0
 offset_left = 218.0
 offset_top = 168.0
@@ -78,12 +82,18 @@ theme_override_fonts/font = ExtResource("6_p2vtd")
 theme_override_font_sizes/font_size = 40
 text = "最终分数: 0"
 
-[node name="retry_button" type="Button" parent="CanvasLayer/score_label/game_over"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 276.0
-offset_right = 284.0
-offset_bottom = 332.0
+[node name="retry_and_back_button" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="retry_button" type="Button" parent="CanvasLayer/retry_and_back_button"]
+offset_left = 76.0
+offset_top = 523.0
+offset_right = 280.0
+offset_bottom = 579.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_p2vtd")
 theme_override_font_sizes/font_size = 28
@@ -91,12 +101,11 @@ text = "重试"
 icon = ExtResource("7_owwim")
 icon_alignment = 1
 
-[node name="back_button" type="Button" parent="CanvasLayer/score_label/game_over"]
-layout_mode = 0
-offset_left = 346.0
-offset_top = 276.0
-offset_right = 550.0
-offset_bottom = 332.0
+[node name="back_button" type="Button" parent="CanvasLayer/retry_and_back_button"]
+offset_left = 873.0
+offset_top = 523.0
+offset_right = 1077.0
+offset_bottom = 579.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_p2vtd")
 theme_override_font_sizes/font_size = 28
@@ -104,20 +113,11 @@ text = "返回"
 icon = ExtResource("7_owwim")
 icon_alignment = 1
 
-[node name="retry_button" type="Button" parent="."]
-offset_left = 231.0
-offset_top = 265.0
-offset_right = 435.0
-offset_bottom = 321.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_p2vtd")
-theme_override_font_sizes/font_size = 28
-text = "重试"
-icon = ExtResource("7_owwim")
-icon_alignment = 1
+[node name="cost_time_Timer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="timeout" from="ufo_generate_Timer" to="." method="_on_ufo_generate_timer_timeout"]
 [connection signal="timeout" from="skeleton_generate_Timer" to="." method="_on_skeleton_generate_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/score_label/game_over/retry_button" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/score_label/game_over/back_button" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="retry_button" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/retry_and_back_button/retry_button" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/retry_and_back_button/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="timeout" from="cost_time_Timer" to="." method="_on_cost_time_timer_timeout"]
