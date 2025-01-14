@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5o301j5ueg8l"]
+
+[ext_resource type="PackedScene" uid="uid://cx084rbiqoq4y" path="res://scene/plane/plane.tscn" id="1_hxk3i"]
+[ext_resource type="Texture2D" uid="uid://d4auxiib2ageq" path="res://resource/img/plane/plane_vip.png" id="2_cx1p4"]
+[ext_resource type="Script" path="res://scripts/plane/vip_plane.gd" id="2_exoye"]
+[ext_resource type="PackedScene" uid="uid://c18wtteyp7u8y" path="res://scene/plane/bullet/vip_bullet.tscn" id="3_pdoti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfo5f"]
+atlas = ExtResource("2_cx1p4")
+region = Rect2(0, 0, 29, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_soj33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfo5f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Plane" instance=ExtResource("1_hxk3i")]
+script = ExtResource("2_exoye")
+bullet_scene = ExtResource("3_pdoti")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(-2, 0)
+sprite_frames = SubResource("SpriteFrames_soj33")
