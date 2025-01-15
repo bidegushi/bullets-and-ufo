@@ -13,7 +13,7 @@ config_version=5
 config/name="project0"
 run/main_scene="res://scene/real_scene/strat_page.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://resource/img/plane/plane.png"
 
 [autoload]
 
