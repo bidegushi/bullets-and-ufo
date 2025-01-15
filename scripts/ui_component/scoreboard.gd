@@ -28,7 +28,6 @@ var cost_time:int #本局游戏的时间 单位为秒
 var score:int #本局游戏得分
 
 
-
 func _ready() -> void:
 	score_show=$"ColorRect/文字_本轮得分/分数"
 	scoreboard=$"ColorRect/前10显示"
