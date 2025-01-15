@@ -113,5 +113,6 @@ monitorable = false
 script = ExtResource("3_3h548")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(329, 0)
 shape = SubResource("RectangleShape2D_re58r")

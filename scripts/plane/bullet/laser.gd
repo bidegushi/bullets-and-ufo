@@ -1,3 +1,6 @@
+#这个激光效果的代码来自: 
+#https://github.com/gdquest-demos/godot-visual-effects/tree/master
+
 # Casts a laser along a raycast, emitting particles on the impact point.
 # Use `is_casting` to make the laser fire and stop.
 # You can attach it to a weapon or a ship; the laser will rotate with its parent.

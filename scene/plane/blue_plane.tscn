@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://x1l1v28pdr6o"]
+[gd_scene load_steps=8 format=3 uid="uid://x1l1v28pdr6o"]
 
 [ext_resource type="PackedScene" uid="uid://cx084rbiqoq4y" path="res://scene/plane/plane.tscn" id="1_0pb8d"]
 [ext_resource type="Texture2D" uid="uid://dyr050pm82r56" path="res://resource/img/plane/plane_blue.png" id="2_fy35p"]
 [ext_resource type="Script" path="res://scripts/plane/blue_plane.gd" id="2_j8ri3"]
 [ext_resource type="PackedScene" uid="uid://x814wmnuwbpn" path="res://scene/plane/bullet/laser_beam.tscn" id="4_8un6k"]
+[ext_resource type="FontFile" uid="uid://jcbtauc4b57x" path="res://resource/font/fusion-pixel-10px-monospaced-zh_hans.ttf" id="5_3ntob"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1evhs"]
 atlas = ExtResource("2_fy35p")
@@ -30,3 +31,15 @@ rotation = -1.5708
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_072rn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+
+[node name="武器提示" type="Label" parent="CanvasLayer" index="0"]
+offset_left = 884.0
+offset_top = 37.0
+offset_right = 1048.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_3ntob")
+theme_override_font_sizes/font_size = 41
+text = "可以发射"
