@@ -8,6 +8,9 @@ var plane_scene : PackedScene #用于选择飞机 表示当前的飞机
 var up_boundary : int = -181 
 var down_boundary : int = 181
 
+#var pre_path : String = "G:/godot/project/project0/test"
+var pre_path : String = "res:/"
+
 func create_explosion_with_255_rgb(position,r,g,b,a):
 	var explosion_node=explosion_scene.instantiate()
 	explosion_node.position=position

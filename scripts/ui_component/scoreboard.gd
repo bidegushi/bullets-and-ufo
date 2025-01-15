@@ -11,8 +11,9 @@ class ScoreStruct:
 	
 
 #存储分数文件的位置
-var file_path : String = "G:/godot/project/project0/test/score.csv"
-
+var file_sub_path : String = "/data/score.csv"
+var file_path : String = Global.pre_path + file_sub_path
+#var file_path : String = "./data/score.csv"
 
 var scoreboard #显示分数榜的位置
 var score_show #显示分数的位置
@@ -53,7 +54,8 @@ func show_top10() -> void:
 	for item in arr:
 		var cost_time_string=cost_time_to_string(item.cost_time) #把花费的时间转换成00:00的格式
 		cnt+=1
-		var str_line="%2d                  %s         %5d        %s\n"%[cnt,cost_time_string,item.score,item.player_name]
+		var score_print=0 if item.score<0 else item.score #如果成绩是负数 就显示0
+		var str_line="%2d                  %s         %5d        %s\n"%[cnt,cost_time_string,score_print,item.player_name]
 		print_str+=str_line
 	scoreboard.text=print_str
 
