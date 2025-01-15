@@ -35,8 +35,7 @@ func _ready() -> void:
 	cost_time_show=$"ColorRect/文字_本轮用时/用时"
 	player_name_in=$"ColorRect/分数输入的下矩形/player_name_in"
 	
-	
-	
+	#数据从主场景中获得
 	mode=get_tree().current_scene.mode
 	time=Time.get_datetime_string_from_system()
 	score=get_tree().current_scene.score
@@ -54,14 +53,13 @@ func _ready() -> void:
 	
 func show_top10() -> void:
 	
-	var arr=get_top_scores_from_csv(file_path)
-	var print_str=""
-	var cnt=0
+	var arr=get_top_scores_from_csv(file_path) #从csv中读取数据到arr
+	var print_str="" #用于存储要显示的内容
+	var cnt=0 #计数
 	for item in arr:
-		var cost_time_string=cost_time_to_string(item.cost_time)
+		var cost_time_string=cost_time_to_string(item.cost_time) #把花费的时间转换成00:00的格式
 		cnt+=1
-		#var str_line="{}                  {}             {}            {}\n".format(["%2d"%cnt,cost_time_string,item.score,item.player_name])
-		var str_line="%2d                  "%cnt + "%s             "%cost_time_string + "%d              "%item.score+"%s"%item.player_name
+		var str_line="%2d                  %s         %5d        %s\n"%[cnt,cost_time_string,item.score,item.player_name]
 		print_str+=str_line
 	scoreboard.text=print_str
 
@@ -73,10 +71,6 @@ func save_score_to_csv(filename: String, score_data: ScoreStruct):
 		print("无法打开文件")
 		return
 
-	# 如果文件为空，写入表头（只在第一次写入时添加）
-	#if file.get_len() == 0:
-	#	file.store_line("mode,name,time,cost_time,score")  # 表头
-	
 	file.seek_end()
 	
 	# 写入数据行
@@ -96,9 +90,6 @@ func get_top_scores_from_csv(filename: String) -> Array:
 		return []
 	
 	var scores = []
-	
-	# 跳过文件的第一行（表头）
-	#file.get_line()
 	
 	# 读取每一行数据并解析
 	while not file.eof_reached():
@@ -131,42 +122,67 @@ func _sort_by_score(a, b):
 	return b.score - a.score  # 降序排序
 	
 
+#把秒变成 m:s 的格式
 func cost_time_to_string(cost_time : int) -> String :
 	var s
 	var m
 	m=cost_time/60
 	s=cost_time%60
-	return "%2d"%m + ":%2d"%s
-	
-	
+	return "%02d"%m + ":%02d"%s
+
+#输入字符串和按全角字符计的长度
+func is_string_length_to_long(input_string: String,max_length:int) -> bool:
+	var half_width_count = 0
+	var full_width_count = 0
+	var result = ""
+
+	for i in range(len(input_string)):
+		var char_code=input_string.unicode_at(i)
+		if char_code<=127:  # 半角字符
+			half_width_count += 1
+		else:  # 全角字符
+			full_width_count += 1
+
+	# 计算长度是否超过限制
+	var total_length=half_width_count*2+full_width_count
+	if  total_length <= max_length:
+		return false
+	else:
+		return true
+
+	return result
 	
 
-var has_saved : bool = false
+var has_saved : bool = false #是否已经保存本次分数
 func _on_submit_button_pressed() -> void:
 	
-	
 	if not has_saved:
-		has_saved=true
+		
+		
+		#这个长度最长只能是7个中文字符 
+		if is_string_length_to_long(player_name_in.text,7):
+			$"ColorRect/提示".text="输入名字长度最长为14个半角字符"
+			$"ColorRect/提示".visible=true
+			return
 		player_name=player_name_in.text
-
+		
+		
 		var latest_score = ScoreStruct.new()
 		latest_score.mode = mode
 		latest_score.player_name = player_name
 		latest_score.time = time
 		latest_score.cost_time = cost_time
 		latest_score.score = score
-
+		
 		save_score_to_csv(file_path,latest_score)
-
+		has_saved=true
 		show_top10() #刷新分数榜
 	
-	
 
-
-
+#重试按钮
 func _on_retry_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
-
+#返回按钮
 func _on_back_button_pressed() -> void:
 	SceneManager.change_scene("start_page")

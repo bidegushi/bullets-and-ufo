@@ -159,6 +159,17 @@ text = "1                  4:01              122            name1
 8                  4:01              122            name1
 9                  4:01              122            name1
 10                4:01              122            name1"
+autowrap_mode = 0
+
+[node name="提示" type="Label" parent="ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 88.0
+offset_top = 448.0
+offset_right = 296.0
+offset_bottom = 471.0
+theme_override_fonts/font = ExtResource("1_jiob3")
+text = "输入名字长度最长为14个半角字符"
 
 [node name="retry_and_back_button" type="Control" parent="."]
 layout_mode = 3
