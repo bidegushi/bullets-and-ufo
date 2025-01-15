@@ -90,6 +90,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="retry_button" type="Button" parent="CanvasLayer/retry_and_back_button"]
+layout_mode = 0
 offset_left = 76.0
 offset_top = 523.0
 offset_right = 280.0
@@ -102,6 +103,7 @@ icon = ExtResource("7_owwim")
 icon_alignment = 1
 
 [node name="back_button" type="Button" parent="CanvasLayer/retry_and_back_button"]
+layout_mode = 0
 offset_left = 873.0
 offset_top = 523.0
 offset_right = 1077.0

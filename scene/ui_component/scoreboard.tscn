@@ -72,6 +72,7 @@ theme_override_font_sizes/font_size = 71
 text = "本轮得分"
 
 [node name="分数" type="Label" parent="ColorRect/文字_本轮得分"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 83.0
 offset_right = 242.0
