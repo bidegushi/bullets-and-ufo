@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://2c6v2hlqjkxp"]
+
+[ext_resource type="Script" path="res://scripts/plane/bullet/laser.gd" id="1_ygibb"]
+[ext_resource type="Texture2D" uid="uid://d4auxiib2ageq" path="res://resource/img/plane/plane_vip.png" id="2_mnctu"]
+[ext_resource type="FontFile" uid="uid://jcbtauc4b57x" path="res://resource/font/fusion-pixel-10px-monospaced-zh_hans.ttf" id="3_2jp4u"]
+[ext_resource type="Texture2D" uid="uid://qkukad446v6o" path="res://resource/img/button/button_empty.png" id="4_kt3xi"]
+
+[node name="Laser" type="RayCast2D"]
+position = Vector2(93, 255)
+target_position = Vector2(1000, 0)
+script = ExtResource("1_ygibb")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 100, 0)
+default_color = Color(0.0431373, 0.317647, 1, 1)
+
+[node name="vip" type="Sprite2D" parent="."]
+position = Vector2(-40.1147, -151.869)
+scale = Vector2(1.0082, 1.0082)
+texture = ExtResource("2_mnctu")
+
+[node name="vip_Button" type="Button" parent="vip"]
+offset_left = -49.5738
+offset_top = 26.7541
+offset_right = 50.4262
+offset_bottom = 61.7541
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_2jp4u")
+text = "黄金飞机"
+icon = ExtResource("4_kt3xi")
+icon_alignment = 1
+expand_icon = true

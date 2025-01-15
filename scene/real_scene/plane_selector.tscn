@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxccdmdwhttp4"]
+[gd_scene load_steps=8 format=3 uid="uid://cxccdmdwhttp4"]
 
 [ext_resource type="Script" path="res://scripts/real_scene/plane_selector.gd" id="1_twqoq"]
 [ext_resource type="Texture2D" uid="uid://bmmdus2s8c2ry" path="res://resource/img/background/bg2.png" id="2_7dgln"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://jcbtauc4b57x" path="res://resource/font/fusion-pixel-10px-monospaced-zh_hans.ttf" id="4_coi7f"]
 [ext_resource type="Texture2D" uid="uid://qkukad446v6o" path="res://resource/img/button/button_empty.png" id="5_ggjoh"]
 [ext_resource type="Texture2D" uid="uid://d4auxiib2ageq" path="res://resource/img/plane/plane_vip.png" id="6_5kmxt"]
+[ext_resource type="Texture2D" uid="uid://dyr050pm82r56" path="res://resource/img/plane/plane_blue.png" id="7_r1ojp"]
 
 [node name="PlaneSelector" type="Control"]
 layout_mode = 3
@@ -54,5 +55,23 @@ icon = ExtResource("5_ggjoh")
 icon_alignment = 1
 expand_icon = true
 
+[node name="blue" type="Sprite2D" parent="background"]
+position = Vector2(80.2787, -151.869)
+scale = Vector2(1.0082, 1.0082)
+texture = ExtResource("7_r1ojp")
+
+[node name="blue_Button" type="Button" parent="background/blue"]
+offset_left = -49.5738
+offset_top = 26.7541
+offset_right = 50.4262
+offset_bottom = 61.7541
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_coi7f")
+text = "蓝色飞机"
+icon = ExtResource("5_ggjoh")
+icon_alignment = 1
+expand_icon = true
+
 [connection signal="pressed" from="background/normal/normal_Button" to="." method="_on_normal_button_pressed"]
 [connection signal="pressed" from="background/vip/vip_Button" to="." method="_on_vip_button_pressed"]
+[connection signal="pressed" from="background/blue/blue_Button" to="." method="_on_blue_button_pressed"]

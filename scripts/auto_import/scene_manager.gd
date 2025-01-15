@@ -29,4 +29,6 @@ func change_to_main(plane_name:String) -> void:
 			Global.plane_scene=load("res://scene/plane/plane.tscn")
 		"vip_plane":
 			Global.plane_scene=load("res://scene/plane/vip_plane.tscn")
+		"blue_plane":
+			Global.plane_scene=load("res://scene/plane/blue_plane.tscn")
 	change_scene("main")

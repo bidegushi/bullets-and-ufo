@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://x1l1v28pdr6o"]
+
+[ext_resource type="PackedScene" uid="uid://cx084rbiqoq4y" path="res://scene/plane/plane.tscn" id="1_0pb8d"]
+[ext_resource type="Texture2D" uid="uid://dyr050pm82r56" path="res://resource/img/plane/plane_blue.png" id="2_fy35p"]
+[ext_resource type="Script" path="res://scripts/plane/blue_plane.gd" id="2_j8ri3"]
+[ext_resource type="PackedScene" uid="uid://x814wmnuwbpn" path="res://scene/plane/bullet/laser_beam.tscn" id="4_8un6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1evhs"]
+atlas = ExtResource("2_fy35p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_072rn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1evhs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Plane" instance=ExtResource("1_0pb8d")]
+script = ExtResource("2_j8ri3")
+bullet_scene = null
+
+[node name="LaserBeam2D" parent="." index="0" instance=ExtResource("4_8un6k")]
+position = Vector2(0, -13)
+rotation = -1.5708
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_072rn")

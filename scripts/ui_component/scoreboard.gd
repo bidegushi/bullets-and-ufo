@@ -1,7 +1,7 @@
 extends Control
 
 
-
+#用于存储分数的结构体
 class ScoreStruct:
 	var mode:int #游戏的模式
 	var player_name:String #玩家留名
@@ -9,7 +9,6 @@ class ScoreStruct:
 	var cost_time:int #本局游戏的时间 单位为秒 保留整数
 	var score:int #本局游戏得分
 	
-#get_datetime_string_from_unix_time
 
 #存储分数文件的位置
 var file_path : String = "G:/godot/project/project0/test/score.csv"
@@ -27,7 +26,6 @@ var time:String #时间 YYYY-MM-DDTHH:MM:SS
 var cost_time:int #本局游戏的时间 单位为秒
 var score:int #本局游戏得分
 
-
 func _ready() -> void:
 	score_show=$"ColorRect/文字_本轮得分/分数"
 	scoreboard=$"ColorRect/前10显示"
@@ -42,13 +40,10 @@ func _ready() -> void:
 	cost_time=get_tree().current_scene.cost_time
 	print(score_show)
 	
-	
 	score_show.text="%d"%score
 	cost_time_show.text=cost_time_to_string(cost_time)
 	
-	
 	show_top10()
-	
 	
 func show_top10() -> void:
 	
@@ -120,7 +115,6 @@ func get_top_scores_from_csv(filename: String) -> Array:
 func _sort_by_score(a, b):
 	return b.score - a.score  # 降序排序
 	
-
 #把秒变成 m:s 的格式
 func cost_time_to_string(cost_time : int) -> String :
 	var s
@@ -151,20 +145,18 @@ func is_string_length_to_long(input_string: String,max_length:int) -> bool:
 
 	return result
 	
-
-var has_saved : bool = false #是否已经保存本次分数
-func _on_submit_button_pressed() -> void:
+var has_saved : bool = false #是否已经保存本次分数 
+func _on_submit_button_pressed() -> void: #按下保存按钮
 	
 	if not has_saved:
 		
-		
+		#获取玩家名
 		#这个长度最长只能是7个中文字符 
 		if is_string_length_to_long(player_name_in.text,7):
 			$"ColorRect/提示".text="输入名字长度最长为14个半角字符"
 			$"ColorRect/提示".visible=true
 			return
 		player_name=player_name_in.text
-		
 		
 		var latest_score = ScoreStruct.new()
 		latest_score.mode = mode
@@ -177,7 +169,6 @@ func _on_submit_button_pressed() -> void:
 		has_saved=true
 		show_top10() #刷新分数榜
 	
-
 #重试按钮
 func _on_retry_button_pressed() -> void:
 	get_tree().reload_current_scene()

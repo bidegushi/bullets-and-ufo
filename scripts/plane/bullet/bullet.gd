@@ -21,3 +21,6 @@ func _physics_process(delta: float) -> void:
 	#自动销毁已经在屏幕外的子弹
 	if position.y<Global.up_boundary:
 		queue_free()
+
+func contact_enemy():
+	queue_free()

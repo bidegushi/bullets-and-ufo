@@ -33,7 +33,8 @@ func _on_area_entered(area: Area2D) -> void:
 		sprite.visible=false #消失
 		Global.create_explosion_with_255_rgb(position,255,191,0,1) #播放爆炸效果
 		is_dead=true #调整变量
-		area.queue_free() #删除子弹
+		#area.queue_free() #删除子弹
+		area.contact_enemy()
 		get_tree().current_scene.score+=get_tree().current_scene.ufo_score#玩家加分
 		
 		await get_tree().create_timer(0.5).timeout #0.5秒后删除 同时爆炸效果也没了

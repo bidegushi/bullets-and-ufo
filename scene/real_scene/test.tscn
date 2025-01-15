@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bepf36dhe4ewe"]
+
+[ext_resource type="PackedScene" uid="uid://x1l1v28pdr6o" path="res://scene/plane/blue_plane.tscn" id="1_taiao"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Plane" parent="." instance=ExtResource("1_taiao")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.38, 1.97)

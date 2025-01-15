@@ -16,8 +16,8 @@ func _process(delta: float) -> void:
 	game_over_func()
 	
 func _physics_process(delta: float) -> void:
-		move()
-		fire()
+	move()
+	fire()
 
 #功能函数
 func fire() -> void: #开火
