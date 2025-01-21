@@ -114,8 +114,9 @@ func get_top_scores_from_csv(filename: String) -> Array:
 	return scores.slice(0, 10)
 
 # 排序函数：根据得分排序
+#排序逻辑： 取分数较高的
 func _sort_by_score(a, b):
-	return b.score - a.score  # 降序排序
+	return b.score - a.score <0  # 降序排序
 	
 #把秒变成 m:s 的格式
 func cost_time_to_string(cost_time : int) -> String :
