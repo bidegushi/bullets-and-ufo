@@ -11,7 +11,7 @@ class ScoreStruct:
 	
 
 #存储分数文件的位置
-var file_sub_path : String = "/data/score.csv"
+var file_sub_path : String = "/data/score.csv0"
 var file_path : String = Global.pre_path + file_sub_path
 #var file_path : String = "./data/score.csv"
 
